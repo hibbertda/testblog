@@ -10,18 +10,29 @@ const last_posts = posts.slice(0, 3);
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
-    <div class="py-2">
-      <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
-      </text>
+<div class="bg-base-200 p-6 rounded-xl shadow-2xl">
+  <div class="flex">
+    <div class="w-3/4">
+      <img src="/nae_logo.png" alt="NotAnExpert Logo" width="100%">
+    </div>
+    <div class="w-3/4">
+      <div class="text-xl py-1 antialiased">Hey there 👋</div>
+      <div class="text-3xl font-bold antialiased">Welcome to</div>
+      <div class="text-5xl font-bold pb-6 antialiased font-serif pt-1">NotanExpert</div>
+      <div class="py-2 p-6 bg-base-300 rounded-xl">
+        <text class="text-lg antialiased">
+          Where curiosity leads the way! Here, we dive into a variety of topics that happen
+          catch my eye, celebrating the joy of exploration without the pressure of expertise. 
+          Whether you're a fellow enthusiast or just someone who loves a good adventure in tech, 
+          join me on this journey where learning is fun, discoveries are plentiful, and the only 
+          requirement is an open mind. Let's embrace the ride together!
+        </text>
+      </div>
     </div>
   </div>
+</div>
+
+  
 
   <!-- <div>
     <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
@@ -43,7 +54,7 @@ const last_posts = posts.slice(0, 3);
   />
     <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
   </div> -->
-  <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
+  <div class="text-3xl pt-4 w-full font-bold mb-5 mt-10">Latest from the blog</div>
   {
     last_posts.map((post) => (
       <>
