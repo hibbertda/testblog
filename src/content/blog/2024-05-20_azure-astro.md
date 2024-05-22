@@ -1,14 +1,59 @@
 ---
 title: "Deploy Astro to Azure Static WebApps"
-description: "Hate sizing storage? I sure do. Give this a shot to build out a purpose built place to do and do some testing."
+description: "Brushing off the dust and trying something new with the Blog"
 pubDate: "2024-05-20 13:25:00 -0400"
 heroImage: "/post_img/2024-5-20-az-astro/hero.png"
-badge: "Azure"
-tags: ["Storage", "NetApp", "ANF"]
+badge: "Blog"
+tags: ["Azure", "Astro", "Static WebApp"]
+author: "Daniel the Expert"
 ---
 
 ## Brushing off the dust and trying something new!
 
+I'm still on the hunt for the perfect place to call home for my website and blog! I started out with a paid account on WordPress.com, but then I discovered Jekyll and GitHub Pages - and let me tell you, they were okay, but not exactly what I was looking for. They got the job done, but left me feeling like there's still more to explore. So, my search continues...
+
+Getting ready for round three, I stumbled upon [Astro](https://astro.build/) during my search. Astro is a static site generator that's not only easier to use but also packed with more features than the ones I've tried before. To spice things up, I'm hosting it all on an [Azure Static WebApps](https://learn.microsoft.com/en-us/azure/static-web-apps/overview). This setup offers a robust, low-cost (or potentially no-cost) platform and takes care of details like SSL certificates for me.
+
+## Building the blog
+
+The Astro documentation is extensive and covers all you would need to know to get things up and running. With most of the heavy lifting for me was done for me by using the [Astrofy](https://github.com/manuelernestog/astrofy) theme which includes pretty much everything I needed to quickly get up and running. 
+
+## Deploying the blog
+
+The blog is set up, all my articles are updated and moved over, and everything is packaged up and pushed into a GitHub repo. Next up is setting up GitHub Actions to deploy everything to the Static Web App. I started with a base example Action and needed to make two small changes to overcome a few hurdles.
+
+### Create Static WebApp
+
+Follow the instructions on deploying a Static WebApp. I went the easy route of using the [Azure Extension for vscode](https://learn.microsoft.com/en-us/azure/static-web-apps/getting-started?tabs=vanilla-javascript). This will take care of creating the resource and a getting starter Action setup with deployment credentials ready to go.
+
+### Github Actions
+
+#### Node Version
+
+The default version of node deployed from Actions was not compatible with Astro. This is called out in their documentation with a quick fix by updating the _package.json_ with a compatible version of Node. 
+
+```json
+  "engines": {
+    "node": ">=18.0.0"
+  },
+```
+
+#### PNPM tasks
+
+Going back to how the Astrofy theme did most of the heavy lifting, it included using **pnpm** for building and other tasks. So, I removed all the default _npm_ tasks and swapped them with _pnpm_.
+
+```yaml
+  - uses: pnpm/action-setup@v4
+    name: Setup pnpm
+    with:
+      version: 8
+  - name: Install dependencies
+    run: pnpm install
+  - name: Build Site
+    run: pnpm run build
+```
+
+#### Full github action:
 
 ```yaml
 name: Deploy web app to Azure Static Web Apps
