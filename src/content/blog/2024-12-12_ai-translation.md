@@ -71,4 +71,4 @@ We live in a globalized world, and information flows in every language and forma
 
 This setup is a reminder that we don’t need to be “experts” to build powerful, AI-driven experiences. Azure’s suite of services and a bit of Python glue code can quickly transform a dull PDF into something living, breathing (metaphorically), and downright useful.
 
-If you’re ready to try this out for yourself, head over to the [GitHub repository](https://github.com/your-username/your-repo) where the code lives. Clone it, run it locally, or adapt it to your own environment. At the very least, you’ll never look at PDFs the same way again—and at best, you’ll have a new tool in your AI toolkit.
+If you’re ready to try this out for yourself, head over to the [GitHub repository](https://github.com/hibbertda/az_ai-transltion-example) where the code lives. Clone it, run it locally, or adapt it to your own environment. At the very least, you’ll never look at PDFs the same way again—and at best, you’ll have a new tool in your AI toolkit.
