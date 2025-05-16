@@ -47,7 +47,7 @@ This structured output is gold. You can build a UI around it any way you like—
 Now, I didn’t want to build a super-slick UI because, let’s face it, I’m no designer. I just needed something that works. Enter **Streamlit**, the Swiss Army knife of quick data app interfaces. With a couple lines of Python, I got a simple web page where I can:
 
 <div class="bg-gray-200 rounded-xl p-1">
-<img src="/post_img/2024-12-12-aitranslate/frontend.png">
+<img src="/post_img/2024-12-12-aitranslate/frontend.png" alt="Streamlit interface showing PDF upload and translated JSON output" />
 </div>
 
 - Upload a PDF file (no drama, just drag & drop).
