@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
 import { ViewTransitions } from "astro:transitions";
+import AppInsights from "../components/AppInsights.astro";
 
 import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
 
@@ -21,6 +22,7 @@ const {
 <html lang="en" data-theme="lofi">
   <head>
     <BaseHead title={title} description={description} image={image} , ogType={ogType} />
+    <AppInsights />
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>

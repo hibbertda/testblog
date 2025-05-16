@@ -1,0 +1,20 @@
+# Netlify configuration for caching headers
+[[headers]]
+for = "/_astro/*"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/assets/*"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/post_img/*"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/**/*.html"
+  [headers.values]
+  Cache-Control = "public, max-age=0, must-revalidate"
