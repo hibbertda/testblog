@@ -4,60 +4,75 @@ import HorizontalCard from "../../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../../lib/createSlug"
 
-export async function getStaticPaths({ paginate }) {
-  const posts = await getCollection("blog");
+export async function getStaticPaths({ paginate }: any) {
+  const posts = (await getCollection("blog"))
+    .filter((post) => import.meta.env.DEV || !post.data.draft);
   posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   return paginate(posts, { pageSize: 10 });
 }
 
-const { page } = Astro.props;
+const { page }: any = Astro.props;
 ---
 
 <BaseLayout title="Blog" sideBarActiveItemID="blog">
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Blog</div>
+  <!-- Hero Section -->
+  <div class="relative overflow-hidden rounded-xl shadow-2xl mb-8 min-h-[180px]">
+    <!-- Background Image -->
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/nae_heroBackground.png')"></div>
+    
+    <!-- Dark Overlay for Text Readability -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+    
+    <!-- Content -->
+    <div class="relative z-10 p-6 flex flex-col justify-center min-h-[180px]">
+      <div class="text-left">
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-2">Blog</h1>
+        <div class="w-16 h-1 bg-primary rounded-full"></div>
+      </div>
+    </div>
   </div>
 
   {
     page.data.length === 0 ? (
-      <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
-        <p class="font-bold">Sorry!</p>
+      <div class="bg-base-200 p-8 rounded-xl border-l-4 border-secondary shadow-sm">
+        <p class="font-bold mb-2">Sorry!</p>
         <p>There are no blog posts to show at the moment. Check back later!</p>
       </div>
     ) : (
-      <ul>
-        {page.data.map((post) => (
-          <>
-            <HorizontalCard
-              title={post.data.title}
-              img={post.data.heroImage}
-              desc={post.data.description}
-              url={"/blog/" + createSlug(post.data.title, post.slug)}
-              target="_self"
-              badge={post.data.badge}
-              tags={post.data.tags}
-            />
-            <div class="divider my-0" />
-          </>
-        ))}
-      </ul>
+        <div class="space-y-6">
+    {
+      page.data.map((post) => (
+        <div class="bg-base-100 rounded-xl p-1 border border-base-300 hover:shadow-md transition-all duration-300">
+          <HorizontalCard
+            title={post.data.title}
+            img={post.data.heroImage}
+            desc={post.data.description}
+            url={"/blog/" + createSlug(post.data.title, post.slug)}
+            target="_self"
+            badge={post.data.badge}
+            tags={post.data.tags}
+            draft={post.data.draft}
+          />
+        </div>
+      ))
+    }
+  </div>
     )
   }
 
-  <div class="flex justify-between">
+  <div class="flex justify-between mt-12">
     {
       page.url.prev ? (
-        <a href={page.url.prev} class="btn btn-ghost my-10 mx-5">
-          {" "}
+        <a href={page.url.prev} class="btn btn-outline btn-lg px-8">
           <svg
-            class="h-6 w-6 fill-current md:h-8 md:w-8"
+            class="h-5 w-5 fill-current mr-2"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             viewBox="0 0 24 24"
           >
             <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
-          </svg>{" "}
+          </svg>
           Recent posts
         </a>
       ) : (
@@ -66,16 +81,15 @@ const { page } = Astro.props;
     }
     {
       page.url.next ? (
-        <a href={page.url.next} class="btn btn-ghost my-10 mx-5">
-          Older Posts{" "}
+        <a href={page.url.next} class="btn btn-outline btn-lg px-8">
+          Older Posts
           <svg
-            class="h-6 w-6 fill-current md:h-8 md:w-8"
+            class="h-5 w-5 fill-current ml-2"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             viewBox="0 0 24 24"
           >
-            {" "}
             <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
           </svg>
         </a>

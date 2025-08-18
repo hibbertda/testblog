@@ -1,0 +1,131 @@
+---
+// Simple theme toggle for light/dark mode based on system preference
+// Currently hidden - remove 'hidden' class to re-enable
+---
+
+<button 
+  class="theme-toggle btn btn-ghost btn-circle hidden" 
+  aria-label="Toggle theme"
+  title="Toggle light/dark mode"
+>
+  <svg class="sun-icon w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M12 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm0-10c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"/>
+    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+  </svg>
+  <svg class="moon-icon w-5 h-5 fill-current hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+  </svg>
+</button>
+
+<!-- Theme toggle script disabled - uncomment to re-enable
+<script is:inline>
+  // Theme toggle functionality - robust version with multiple initialization attempts
+  (function() {
+    let initialized = false;
+    
+    function initThemeToggle() {
+      // Prevent multiple initializations
+      if (initialized) return;
+      
+      // Get all theme toggle buttons
+      const toggles = document.querySelectorAll('.theme-toggle');
+      
+      if (!toggles.length) {
+        // If no toggles found, try again in 100ms
+        setTimeout(initThemeToggle, 100);
+        return;
+      }
+      
+      initialized = true;
+      console.log('Theme toggle initialized with', toggles.length, 'buttons');
+      
+      // Check for saved theme, otherwise use system preference
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      let currentTheme;
+      if (savedTheme) {
+        currentTheme = savedTheme;
+      } else {
+        currentTheme = systemPrefersDark ? 'dark' : 'light';
+      }
+      
+      // Apply the theme
+      function applyTheme(theme) {
+        console.log('Applying theme:', theme);
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        
+        // Update all toggle buttons
+        toggles.forEach((toggle, index) => {
+          const sunIcon = toggle.querySelector('.sun-icon');
+          const moonIcon = toggle.querySelector('.moon-icon');
+          
+          if (theme === 'dark') {
+            if (sunIcon) sunIcon.classList.add('hidden');
+            if (moonIcon) moonIcon.classList.remove('hidden');
+          } else {
+            if (sunIcon) sunIcon.classList.remove('hidden');
+            if (moonIcon) moonIcon.classList.add('hidden');
+          }
+        });
+      }
+      
+      // Set initial theme
+      applyTheme(currentTheme);
+      
+      // Add click listeners to all toggle buttons
+      toggles.forEach((toggle, index) => {
+        toggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          console.log('Theme toggle clicked:', index);
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          applyTheme(newTheme);
+        });
+      });
+      
+      // Listen for system theme changes
+      try {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+          // Only auto-switch if no explicit theme has been saved
+          if (!localStorage.getItem('theme')) {
+            applyTheme(e.matches ? 'dark' : 'light');
+          }
+        });
+      } catch (error) {
+        console.log('Could not listen to system theme changes:', error);
+      }
+    }
+    
+    // Multiple initialization strategies
+    // Strategy 1: Immediate
+    initThemeToggle();
+    
+    // Strategy 2: DOMContentLoaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initThemeToggle);
+    }
+    
+    // Strategy 3: Window load (fallback)
+    window.addEventListener('load', initThemeToggle);
+    
+    // Strategy 4: Manual retry after page load
+    setTimeout(initThemeToggle, 1000);
+  })();
+</script>
+-->
+
+<style>
+  .theme-toggle {
+    transition: transform 0.2s ease;
+  }
+  
+  .theme-toggle:hover {
+    transform: scale(1.1);
+  }
+  
+  .theme-toggle:active {
+    transform: scale(0.95);
+  }
+</style>

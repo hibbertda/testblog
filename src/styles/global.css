@@ -13,3 +13,110 @@
   .rounded-border-image {
     @apply rounded-lg border border-gray-300 p-2;
   }
+
+  /* Custom Callout Styles that work with DaisyUI themes */
+  .callout-note {
+    background-color: rgb(219 234 254) !important; /* blue-100 */
+    border-left: 4px solid rgb(59 130 246) !important; /* blue-500 */
+    color: rgb(29 78 216) !important; /* blue-700 */
+  }
+
+  [data-theme="dark"] .callout-note {
+    background-color: rgb(30 58 138 / 0.3) !important; /* blue-900/30 */
+    border-left-color: rgb(96 165 250) !important; /* blue-400 */
+    color: rgb(191 219 254) !important; /* blue-200 */
+  }
+
+  .callout-info {
+    background-color: rgb(207 250 254) !important; /* cyan-100 */
+    border-left: 4px solid rgb(6 182 212) !important; /* cyan-500 */
+    color: rgb(14 116 144) !important; /* cyan-700 */
+  }
+
+  [data-theme="dark"] .callout-info {
+    background-color: rgb(22 78 99 / 0.3) !important; /* cyan-900/30 */
+    border-left-color: rgb(34 211 238) !important; /* cyan-400 */
+    color: rgb(165 243 252) !important; /* cyan-200 */
+  }
+
+  .callout-tip {
+    background-color: rgb(209 250 229) !important; /* emerald-100 */
+    border-left: 4px solid rgb(16 185 129) !important; /* emerald-500 */
+    color: rgb(4 120 87) !important; /* emerald-700 */
+  }
+
+  [data-theme="dark"] .callout-tip {
+    background-color: rgb(6 78 59 / 0.3) !important; /* emerald-900/30 */
+    border-left-color: rgb(52 211 153) !important; /* emerald-400 */
+    color: rgb(167 243 208) !important; /* emerald-200 */
+  }
+
+  .callout-warning {
+    background-color: rgb(254 243 199) !important; /* amber-100 */
+    border-left: 4px solid rgb(245 158 11) !important; /* amber-500 */
+    color: rgb(180 83 9) !important; /* amber-700 */
+  }
+
+  [data-theme="dark"] .callout-warning {
+    background-color: rgb(120 53 15 / 0.3) !important; /* amber-900/30 */
+    border-left-color: rgb(251 191 36) !important; /* amber-400 */
+    color: rgb(254 215 170) !important; /* amber-200 */
+  }
+
+  .callout-error {
+    background-color: rgb(254 226 226) !important; /* red-100 */
+    border-left: 4px solid rgb(239 68 68) !important; /* red-500 */
+    color: rgb(185 28 28) !important; /* red-700 */
+  }
+
+  [data-theme="dark"] .callout-error {
+    background-color: rgb(127 29 29 / 0.3) !important; /* red-900/30 */
+    border-left-color: rgb(248 113 113) !important; /* red-400 */
+    color: rgb(254 202 202) !important; /* red-200 */
+  }
+
+  /* Ensure code blocks in callouts maintain consistent styling */
+  .callout-note pre,
+  .callout-info pre,
+  .callout-tip pre,
+  .callout-warning pre,
+  .callout-error pre {
+    background-color: rgb(15 23 42) !important; /* slate-900 - consistent with site theme */
+    color: rgb(226 232 240) !important; /* slate-200 */
+    border: 1px solid rgb(71 85 105) !important; /* slate-600 */
+    border-radius: 0.5rem !important;
+    padding: 1rem !important;
+    margin: 0.75rem 0 !important;
+    overflow-x: auto !important;
+  }
+
+  .callout-note code,
+  .callout-info code,
+  .callout-tip code,
+  .callout-warning code,
+  .callout-error code {
+    background-color: rgb(15 23 42) !important; /* slate-900 */
+    color: rgb(226 232 240) !important; /* slate-200 */
+    padding: 0.125rem 0.25rem !important;
+    border-radius: 0.25rem !important;
+    font-size: 0.875rem !important;
+  }
+
+  /* Light theme code blocks in callouts */
+  [data-theme="light"] .callout-note pre,
+  [data-theme="light"] .callout-info pre,
+  [data-theme="light"] .callout-tip pre,
+  [data-theme="light"] .callout-warning pre,
+  [data-theme="light"] .callout-error pre {
+    background-color: rgb(15 23 42) !important; /* Keep dark for readability */
+    color: rgb(226 232 240) !important;
+  }
+
+  [data-theme="light"] .callout-note code,
+  [data-theme="light"] .callout-info code,
+  [data-theme="light"] .callout-tip code,
+  [data-theme="light"] .callout-warning code,
+  [data-theme="light"] .callout-error code {
+    background-color: rgb(15 23 42) !important; /* Keep dark for readability */
+    color: rgb(226 232 240) !important;
+  }

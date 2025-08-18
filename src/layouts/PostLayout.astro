@@ -14,40 +14,59 @@ import { Image } from "astro:assets";
 
 <BaseLayout title={title} description={description} image={heroImage} ogType="article">
   <main class="md:flex md:justify-center">
-    <article class="prose prose-lg max-w-[800px] prose-img:mx-auto"> <!-- Change the width of the blog post. I like it wider -->
-      {heroImage && (
-        <Image
-          src={heroImage}
-          alt={title}
-          class="w-full"
-          width={750}
-          height={422}
-          format="webp"
-          loading="lazy"
-        />
-      )}
-      <h1 class="title my-2 text-4xl font-bold">{title}</h1>
-      {pubDate && <time>{displayDate}</time>}
-      <br />
-      {badge && <div class="badge badge-secondary my-1">{badge}</div>}
-      {
-        tags &&
-          tags.map((tag) => (
-            <a href={`/blog/tag/${tag}`} class="badge badge-outline ml-2 no-underline">
-              {tag}
-            </a>
-          ))
-      }
-      {
-        updatedDate && (
-          <div>
-            {" "}
-            Last updated on <time>{updatedDate}</time>{" "}
+    <article class="max-w-[1000px] w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-8 items-center">
+        {heroImage && (
+          <div class="lg:col-span-2">
+            <Image
+              src={heroImage}
+              alt={title}
+              class="w-full h-64 lg:h-80 object-cover rounded-lg shadow-lg"
+              width={400}
+              height={320}
+              format="webp"
+              loading="lazy"
+            />
           </div>
-        )
-      }
-      <div class="divider my-2"></div>
-      <slot />
+        )}
+        
+        <div class={heroImage ? "lg:col-span-3 flex flex-col justify-center text-left" : "lg:col-span-5"}>
+          <h1 class="title text-4xl font-bold mb-4 leading-tight">{title}</h1>
+          
+          <div class="flex flex-wrap items-center gap-2 mb-4 text-sm">
+            {pubDate && (
+              <time class="text-base-content/70 font-medium">{displayDate}</time>
+            )}
+            {badge && <div class="inline-flex items-center px-3 py-1 bg-blue-600/20 text-blue-600 rounded-full text-xs font-medium border border-blue-600/30">{badge}</div>}
+            {
+              tags &&
+                tags.map((tag) => (
+                  <a href={`/blog/tag/${tag}`} class="inline-flex items-center px-3 py-1 bg-secondary/25 text-secondary rounded-full text-xs font-medium border border-secondary/40 no-underline hover:scale-105 transition-transform">
+                    {tag}
+                  </a>
+                ))
+            }
+          </div>
+          
+          {description && (
+            <p class="text-base text-base-content/80 mb-4 leading-relaxed">{description}</p>
+          )}
+          
+          {
+            updatedDate && (
+              <div class="text-sm text-base-content/70 mb-4">
+                Last updated on <time>{updatedDate}</time>
+              </div>
+            )
+          }
+        </div>
+      </div>
+      
+      <div class="divider my-6"></div>
+      
+      <div class="prose prose-lg max-w-none prose-img:mx-auto">
+        <slot />
+      </div>
     </article>
   </main>
 </BaseLayout>

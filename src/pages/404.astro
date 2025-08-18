@@ -3,10 +3,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title = "404: Not Found" includeSidebar={false}>
-  <div class="text-center">
-    <h1 class="text-9xl font-bold mb-4">🏝</h1>
-    <h1 class="text-9xl font-bold mb-2">404</h1>
-    <h3 class="text-2xl">The page you're looking for couldn't be found.</h3>
-    <a class="btn btn-accent mt-9" href="/">Home</a>
+<BaseLayout title = "404: Not Found" includeSidebar={false}>
+  <div class="flex items-center justify-center min-h-[60vh]">
+    <div class="text-center">
+      <div class="bg-base-100 rounded-3xl p-12 shadow-2xl">
+        <h1 class="text-9xl font-bold mb-4 text-primary/20">404</h1>
+        <h2 class="text-3xl font-bold mb-4 text-primary">Page Not Found</h2>
+        <p class="text-lg mb-8 text-base-content/70">The page you're looking for couldn't be found.</p>
+        <a class="px-8 py-3 bg-primary text-primary-content rounded-xl hover:bg-primary-focus transition-all duration-300 shadow-lg hover:shadow-xl" href="/">Return Home</a>
+      </div>
+    </div>
   </div>
 </BaseLayout>

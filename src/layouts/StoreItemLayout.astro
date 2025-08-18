@@ -33,9 +33,9 @@ import { Image } from "astro:assets";
         )
       }
       <div class="">
-        <h1 class="title my-2 text-4xl font-bold">
+                <h1 class="text-5xl font-bold">
           {title}
-          {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
+          {badge && <div class="inline-flex items-center px-3 py-1 bg-blue-600/20 text-blue-600 rounded-full text-xs font-medium border border-blue-600/30 mx-2">{badge}</div>}
         </h1>
         <div class="flex place-content-between items-center">
           <div class="grow md:grow-0">

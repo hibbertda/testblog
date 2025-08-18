@@ -10,11 +10,11 @@ import { Image } from "astro:assets";
       <div class="card-body">
         <h2 class="card-title">
           {title}
-          {badge && <div class="badge badge-secondary">{badge}</div>}
+          {badge && <div class="inline-flex items-center px-3 py-1 bg-blue-600/20 text-blue-600 rounded-full text-xs font-medium border border-blue-600/30">{badge}</div>}
         </h2>
         <p>{desc}</p>
         <div class="card-actions justify-end">
-          {tags && tags.map((tag) => <div class="badge badge-outline">{tag}</div>)}
+          {tags && tags.map((tag) => <span class="inline-flex items-center px-3 py-1 bg-secondary/25 text-secondary rounded-full text-xs font-medium border border-secondary/40">{tag}</span>)}
         </div>
       </div>
     </div>

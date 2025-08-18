@@ -1,0 +1,130 @@
+---
+title: "Callout Component Demo"
+description: "Demonstrating the new reusable callout components with different types and styles."
+pubDate: "2025-08-18 15:00:00 -0400"
+heroImage: "/post_img.webp"
+badge: "Demo"
+tags: ["components", "design", "demo"]
+draft: true
+---
+
+import Callout from '../../components/Callout.astro';
+
+# Callout Component Showcase
+
+This demo post showcases the new reusable callout component that can be used in MDX blog posts. Here are all the different types available:
+
+## Basic Callouts
+
+<Callout type="note">
+This is a **note** callout. Perfect for highlighting important information that readers should pay attention to. You can include [links](https://example.com) and **formatted text** inside callouts.
+</Callout>
+
+<Callout type="info">
+This is an **info** callout. Similar to note but semantically different. Use this for general information that might be helpful but not critical.
+</Callout>
+
+<Callout type="tip">
+This is a **tip** callout. Great for sharing helpful advice, best practices, or pro tips that can improve the reader's experience or workflow.
+</Callout>
+
+<Callout type="warning">
+This is a **warning** callout. Use this when you need to alert readers about potential issues, deprecated features, or things they should be careful about.
+</Callout>
+
+<Callout type="error">
+This is an **error** callout. Reserved for critical information about things that are broken, dangerous, or will cause problems if not addressed.
+</Callout>
+
+## Callouts with Custom Titles
+
+<Callout type="note" title="Azure Best Practice">
+When working with Azure resources, always use resource groups to organize related resources. This makes management and cleanup much easier.
+</Callout>
+
+<Callout type="tip" title="Pro Tip">
+You can use Azure CLI with the `--output table` flag to get nicely formatted output that's easier to read in the terminal.
+</Callout>
+
+<Callout type="warning" title="Breaking Change Alert">
+The legacy Azure PowerShell module is being deprecated. Make sure to migrate to the newer Az PowerShell module before the support deadline.
+</Callout>
+
+## Real-World Examples
+
+Here are some practical examples of how these callouts might be used in actual blog posts:
+
+<Callout type="note">
+**Prerequisites**: Before following this tutorial, make sure you have:
+- An active Azure subscription
+- Azure CLI installed and configured
+- Basic knowledge of PowerShell or Bash
+</Callout>
+
+<Callout type="tip" title="Cost Optimization">
+Remember to delete your test resources after completing this tutorial to avoid unnecessary charges. You can use `az group delete --name your-resource-group` to clean up everything at once.
+</Callout>
+
+<Callout type="warning" title="Security Consideration">
+Never commit connection strings, API keys, or passwords to source control. Always use Azure Key Vault or environment variables for sensitive configuration.
+</Callout>
+
+## Code Integration
+
+Callouts work great alongside code blocks:
+
+```bash
+# Create a new resource group
+az group create --name demo-rg --location eastus
+```
+
+<Callout type="tip">
+The `eastus` location is often a good default choice for demos because it typically has the most Azure services available and competitive pricing.
+</Callout>
+
+<Callout type="note" title="Code in Callouts">
+You can include code blocks directly inside callouts:
+
+```json
+{
+  "name": "demo-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "^4.18.0"
+  }
+}
+```
+
+Or inline code like `npm install` and `az login` commands.
+</Callout>
+
+<Callout type="warning" title="PowerShell Example">
+Be careful when running destructive commands:
+
+```powershell
+# This will delete ALL resources in the resource group!
+Remove-AzResourceGroup -Name "demo-rg" -Force
+```
+
+Always double-check your resource group name before running deletion commands.
+</Callout>
+
+## Nested Content
+
+Callouts can contain various types of content:
+
+<Callout type="info" title="Multiple Paragraphs">
+This callout contains multiple paragraphs to show how the component handles longer content.
+
+You can include multiple paragraphs, lists, and other markdown elements within a single callout.
+
+**Features supported:**
+- Bold and *italic* text
+- [Links to external resources](https://azure.microsoft.com)
+- `Inline code snippets`
+- And much more!
+</Callout>
+
+---
+
+This demo shows the flexibility and power of the new callout component. Use these in your future MDX blog posts to create more engaging and informative content!

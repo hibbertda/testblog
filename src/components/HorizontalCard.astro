@@ -1,7 +1,15 @@
 ---
-const { title, img, desc, url, badge, tags, target = "_blank" } = Astro.props;
+const { title, img, desc, url, badge, tags, target = "_blank", draft = false } = Astro.props;
 import { Image } from "astro:assets";
 const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
+
+// Function to truncate text to a specific character limit
+function truncateText(text, maxLength = 120) {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength).trim() + "...";
+}
+
+const truncatedDesc = truncateText(desc);
 ---
 
 <div
@@ -9,29 +17,50 @@ const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
 >
   <a href={url} target={target}>
     <div class="hero-content flex-col md:flex-row">
-      {
-        img && (
-          <Image
-            src={img}
-            width={750}
-            height={422}
-            format="webp"
-            alt={title}
-            class="max-w-full md:max-w-[13rem] rounded-lg"
-          />
-        )
-      }
+      <div class="flex-shrink-0 w-full md:w-[13rem] h-[200px] md:h-[7.5rem] flex items-center justify-center">
+        {
+          img ? (
+            <Image
+              src={img}
+              width={750}
+              height={422}
+              format="webp"
+              alt={title}
+              class="w-full h-full object-cover rounded-lg"
+            />
+          ) : (
+            <div class="w-full h-full bg-base-300 rounded-lg flex items-center justify-center">
+              <Image
+                src="/nae_logo.png"
+                width={400}
+                height={225}
+                format="webp"
+                alt="NotAnExpert Logo"
+                class="max-w-[8rem] max-h-[4.5rem] object-contain rounded-lg opacity-60"
+              />
+            </div>
+          )
+        }
+      </div>
       <div class="grow w-full">
         <h1 class="text-xl font-bold">
           {title}
-          {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
+          {draft && import.meta.env.DEV && <div class="inline-flex items-center px-3 py-1 bg-yellow-600/20 text-yellow-600 rounded-full text-xs font-medium border border-yellow-600/30 mx-2">DRAFT</div>}
+          {badge && <div class="inline-flex items-center px-3 py-1 bg-blue-600/20 text-blue-600 rounded-full text-xs font-medium border border-blue-600/30 mx-2">{badge}</div>}
         </h1>
-        <p class="py-1 text-1xl">{desc}</p>
+        <p class="py-1 text-1xl">{truncatedDesc}</p>
+        {desc.length > 120 && (
+          <div class="mt-2">
+            <a href={url} target={target} class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+              Read more →
+            </a>
+          </div>
+        )}
         <div class="card-actions justify-end">
           {
             tags &&
               tags.map((tag) => (
-                <a href={`${tag_url}/${tag}`} class="badge badge-outline">
+                <a href={`${tag_url}/${tag}`} class="inline-flex items-center px-3 py-1 bg-secondary/25 text-secondary rounded-full text-xs font-medium border border-secondary/40 no-underline hover:scale-105 transition-transform">
                   {tag}
                 </a>
               ))

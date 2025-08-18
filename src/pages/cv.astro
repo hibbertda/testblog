@@ -4,89 +4,101 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
 ---
 
 <BaseLayout title="Resume" sideBarActiveItemID="cv">
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Profile</div>
+<BaseLayout title="Resume" sideBarActiveItemID="cv">
+  <div class="mb-8">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold mb-2">Resume</h1>
+      <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+    </div>
   </div>
 
-  <div class="mb-10 text-justify">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  <div class="space-y-12">
+    <!-- Profile Section -->
+    <div class="bg-base-100 rounded-2xl p-8 shadow-lg">
+      <h2 class="text-2xl font-bold mb-4 text-primary">Profile</h2>
+      <div class="text-justify leading-relaxed">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+    </div>
+
+    <!-- Education Section -->
+    <div class="bg-base-100 rounded-2xl p-8 shadow-lg">
+      <h2 class="text-2xl font-bold mb-6 text-primary">Education</h2>
+      <div class="time-line-container grid gap-4">
+        <TimeLineElement
+          title="Title Name"
+          subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
+        />
+        <TimeLineElement
+          title="Title Name"
+          subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
+        />
+      </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="bg-base-100 rounded-2xl p-8 shadow-lg">
+      <h2 class="text-2xl font-bold mb-6 text-primary">Experience</h2>
+      <div class="time-line-container">
+        <TimeLineElement
+          title="Job Title at Project or Company Name"
+          subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+        </TimeLineElement>
+        <TimeLineElement
+          title="Job Title at Project or Company Name"
+          subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+        </TimeLineElement>
+        <TimeLineElement
+          title="Job Title at Project or Company Name"
+          subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+        </TimeLineElement>
+      </div>
+    </div>
+
+    <!-- Certifications Section -->
+    <div class="bg-base-100 rounded-2xl p-8 shadow-lg">
+      <h2 class="text-2xl font-bold mb-6 text-primary">Certifications</h2>
+      <ul class="space-y-3">
+        <li class="flex items-center">
+          <div class="w-2 h-2 bg-accent rounded-full mr-4"></div>
+          <a href="#" target="_blank" class="text-primary hover:text-primary-focus transition-colors"> Certification Name (with link)</a>
+        </li>
+        <li class="flex items-center">
+          <div class="w-2 h-2 bg-accent rounded-full mr-4"></div>
+          <a href="#" target="_blank" class="text-primary hover:text-primary-focus transition-colors"> Certification Name (with link)</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="bg-base-100 rounded-2xl p-8 shadow-lg">
+      <h2 class="text-2xl font-bold mb-6 text-primary">Skills</h2>
+      <div class="grid md:grid-cols-5 grid-cols-2 gap-3">
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+        <span class="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm text-center">Skill Name</span>
+      </div>
+    </div>
   </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Education</div>
-  </div>
-
-  <div class="time-line-container grid gap-4 mb-10">
-    <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
-    <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Experience</div>
-  </div>
-
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-    </TimeLineElement>
-    <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-    </TimeLineElement>
-    <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-    </TimeLineElement>
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Certifications</div>
-  </div>
-
-  <ul class="list-disc mx-6 mb-10 grid gap-2">
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
-  </ul>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Skills</div>
-  </div>
-
-  <ul class="list-disc md:columns-5 columns-2 mx-6">
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-  </ul>
 </BaseLayout>
