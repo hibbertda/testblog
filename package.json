@@ -1,11 +1,12 @@
 {
-  "name": "astrofy",
-  "description": "Astrofy is a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS. Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed.",
+  "name": "notanexpert-blog",
+  "description": "Where curiosity meets technology! Exploring Azure, AI, and cloud solutions without the pressure of expertise.",
+  "version": "1.0.0",
   "type": "module",
-  "version": "3.0.0",
   "private": true,
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=18.17.0",
+    "pnpm": ">=8.0.0"
   },
   "scripts": {
     "dev": "astro dev",

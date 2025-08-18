@@ -5,7 +5,8 @@ import PostLayout from "../../layouts/PostLayout.astro";
 import createSlug from "../../lib/createSlug"
 
 export async function getStaticPaths() {
-  const postEntries = await getCollection("blog");
+  const postEntries = (await getCollection("blog"))
+    .filter((post) => import.meta.env.DEV || !post.data.draft);
   return postEntries.map((entry) => ({
     params: { slug: createSlug(entry.data.title, entry.slug) },
     props: { entry },

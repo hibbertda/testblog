@@ -4,70 +4,118 @@ import HorizontalCard from "../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../lib/createSlug"
 
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection("blog"))
+  .filter((post) => import.meta.env.DEV || !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const last_posts = posts.slice(0, 3);
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-<div class="bg-base-200 p-6 rounded-xl shadow-2xl">
-  <div class="flex">
-    <div class="w-3/4">
-      <img src="/nae_logo.png" alt="NotAnExpert Logo" width="100%">
-    </div>
-    <div class="w-3/4">
-      <div class="text-xl py-1 antialiased">Hey there 👋</div>
-      <div class="text-3xl font-bold antialiased">Welcome to</div>
-      <div class="text-5xl font-bold pb-6 antialiased font-serif pt-1">NotanExpert</div>
-      <div class="py-2 p-6 bg-base-300 rounded-xl">
-        <text class="text-lg antialiased">
-          Where curiosity leads the way! Here, we dive into a variety of topics that happen
-          catch my eye, celebrating the joy of exploration without the pressure of expertise. 
-          Whether you're a fellow enthusiast or just someone who loves a good adventure in tech, 
-          join me on this journey where learning is fun, discoveries are plentiful, and the only 
-          requirement is an open mind. Let's embrace the ride together!
-        </text>
+  <!-- Hero Section -->
+  <div class="relative overflow-hidden rounded-xl shadow-2xl mb-8 min-h-[300px] md:min-h-[380px]">
+    <!-- Background Image -->
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/nae_heroBackground.png')"></div>
+    
+    <!-- Dark Overlay for Text Readability -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+    
+    <!-- Content -->
+    <div class="relative z-10 p-6 md:p-12 flex flex-col justify-center min-h-[300px] md:min-h-[380px]">
+      <div class="max-w-4xl">
+        <div class="text-xl py-1 text-white/90">Hey there</div>
+        <div class="text-3xl md:text-4xl font-bold text-white">Welcome to</div>
+        <div class="text-5xl md:text-7xl font-bold pb-6 font-serif pt-1 bg-gradient-to-r from-orange-400 to-yellow-300 bg-clip-text text-transparent">
+          NotAnExpert
+        </div>
+        
+        <div class="py-4 px-8 bg-white/75 backdrop-blur-sm rounded-xl border border-white/20 shadow-xl">
+          <p class="text-lg leading-relaxed text-gray-800">
+            Where curiosity leads the way! Here, we dive into a variety of topics that happen catch my eye, celebrating the joy of exploration without the pressure of expertise. Whether you're a fellow enthusiast or just someone who loves a good adventure in tech, join me on this journey where learning is fun, discoveries are plentiful, and the only requirement is an open mind. Let's embrace the ride together!
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-  
+  <!-- Content Sections -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- About Me Section -->
+    <div class="bg-base-200 p-8 rounded-2xl shadow-lg">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold mb-2 text-base-content">
+          Sometimes Expert, Mostly Just Curious
+        </h2>
+        <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+      </div>
+      
+      <div class="flex items-center text-left mb-8 max-w-md mx-auto">
+        <div class="w-24 h-24 mr-6 relative flex-shrink-0">
+          <img 
+            src="/new_profile.png" 
+            alt="Daniel Hibbert" 
+            class="w-full h-full rounded-full object-cover shadow-xl ring-4 ring-primary/20"
+          >
+        </div>
+        <div class="flex-1 flex flex-col justify-center">
+          <h3 class="text-2xl font-bold mb-3 text-base-content text-left">Hey, I'm Daniel</h3>
+          <div class="flex items-center px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-medium border border-secondary/20 w-fit">
+            Button Masher-in-Chief
+          </div>
+        </div>
+      </div>
+      
+      <div class="space-y-6 max-w-lg mx-auto">
+        <p class="text-base leading-relaxed text-center bg-base-100 p-6 rounded-lg border border-base-300">
+          I have absolutely no idea what I'm doing most of the time, and that's exactly why this blog exists! 
+          I'm just someone who stumbles through technology, documenting every "wait, how does this work?" moment 
+          along the way. 
+          <br><br>
+          If you're looking for expert advice from someone who has it all figured out... you're in the wrong place! 
+          But if you want to watch someone figure things out in real-time, make mistakes, and celebrate the small wins 
+          across whatever tech catches my eye, then welcome to the chaos!
+        </p>
+      </div>
+      
+      <div class="text-center mt-8">
+        <a href="/about" class="btn btn-outline btn-lg px-8">
+          See How Lost I Really Am
+        </a>
+      </div>
+    </div>
 
-  <!-- <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+    <!-- Latest Blog Posts -->
+    <div class="bg-base-200 p-8 rounded-2xl shadow-lg">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold mb-2 text-base-content">
+          Latest from the Blog
+        </h2>
+        <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+      </div>
+      
+      <div class="space-y-6">
+        {
+          last_posts.map((post) => (
+            <div class="bg-base-100 rounded-xl p-1 border border-base-300 hover:shadow-md transition-all duration-300">
+              <HorizontalCard
+                title={post.data.title}
+                img={post.data.heroImage}
+                desc={post.data.description}
+                url={"/blog/" + createSlug(post.data.title, post.slug)}
+                target="_self"
+                badge={post.data.badge}
+                draft={post.data.draft}
+              />
+            </div>
+          ))
+        }
+      </div>
+      
+      <div class="text-center mt-8">
+        <a href="/blog" class="btn btn-outline btn-lg px-8">
+          Read More Articles →
+        </a>
+      </div>
+    </div>
   </div>
-
-  <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
-  </div> -->
-  <div class="text-3xl pt-4 w-full font-bold mb-5 mt-10">Latest from the blog</div>
-  {
-    last_posts.map((post) => (
-      <>
-        <HorizontalCard
-          title={post.data.title}
-          img={post.data.heroImage}
-          desc={post.data.description}
-          url={"/blog/" + createSlug(post.data.title, post.slug)}
-          target="_self"
-          badge={post.data.badge}
-        />
-        <div class="divider my-0" />
-      </>
-    ))
-  }
 </BaseLayout>
